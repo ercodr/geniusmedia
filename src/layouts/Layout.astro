@@ -49,11 +49,9 @@ import Footer from '../components/Footer.astro';
 
 	let theme = window.localStorage.getItem('theme');
 
-	if (theme === null){
-		window.localStorage.setItem('theme', 'light');
-	} else {
-		html.className = theme;
-	}
+	theme===null ? window.localStorage.setItem('theme', 'light') : html.className = theme;
+
+	theme==="dark" && themeToggler.classList.toggle("rotate-180");
 
     themeToggler.addEventListener("click", () => {
         html.classList.toggle("dark");
