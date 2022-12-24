@@ -58,12 +58,14 @@ import Footer from '../components/Footer.astro';
     themeToggler.addEventListener("click", () => {
         html.classList.toggle("dark");
         html.classList.toggle("light");
+		themeToggler.classList.toggle("rotate-180");
 		window.localStorage.setItem('theme', html.classList);
     })
     
 	themeToggler2.addEventListener("click", () => {
 		html.classList.toggle("dark");
 		html.classList.toggle("light");
+		themeToggler.classList.toggle("rotate-180");
 		window.localStorage.setItem('theme', html.classList);
     })
 </script>
