@@ -32,3 +32,18 @@ const navlinks = ['Home', 'About', 'Projects', 'Contact']
         </nav>
     </div>
 </header>
+
+<script is:inline>
+    const themeToggler = document.getElementById("themeToggler");
+    const html = document.getElementById("html");
+	let theme = window.localStorage.getItem('theme');
+    
+	theme===null ? window.localStorage.setItem('theme', '') : html.classList = theme;
+	theme==="dark" && themeToggler.classList.toggle("rotate-180");
+
+    themeToggler.addEventListener("click", () => {
+        html.classList.toggle("dark");
+		themeToggler.classList.toggle("rotate-180")
+		window.localStorage.setItem('theme', html.className);
+    })
+</script>
