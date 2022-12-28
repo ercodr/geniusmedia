@@ -1,0 +1,14 @@
+<script defer is:inline>
+	const obs = new IntersectionObserver((e) => {
+		e.forEach(element => {
+			if(element.isIntersecting) {
+				element.target.classList.add('show');
+			} else {
+				element.target.classList.remove('show')
+			}
+		});
+	});
+
+	const hiddenElements = document.querySelectorAll('.hide');
+	hiddenElements.forEach(el => obs.observe(el))
+</script>

@@ -16,7 +16,7 @@ const navlinks = ['Home', 'About', 'Projects', 'Contact']
                 {
                     navlinks.map(link => {
                         return (
-                            <li class="hidden md:flex">
+                            <li class={`hidden md:flex ${link}`}>
                                 <a href={`#${link}`} class="relative group hover:text-blue-700">
                                     {link}
                                     <div class="absolute w-full mt-1 h-0.5 bg-blue-700 scale-x-0 group-hover:scale-x-75 transition-transform duration-500"></div>
@@ -33,7 +33,7 @@ const navlinks = ['Home', 'About', 'Projects', 'Contact']
     </div>
 </header>
 
-<script is:inline>
+<script defer is:inline>
     const themeToggler = document.getElementById("themeToggler");
     const html = document.getElementById("html");
 	let theme = window.localStorage.getItem('theme');
@@ -46,4 +46,11 @@ const navlinks = ['Home', 'About', 'Projects', 'Contact']
 		themeToggler.classList.toggle("rotate-180")
 		window.localStorage.setItem('theme', html.className);
     })
+</script>
+
+<script is:inline defer>
+    const Home = document.getElementById('Home')
+    const About = document.getElementById('About')
+    const Projects = document.getElementById('Projects')
+    const Contact = document.getElementById('Contact')
 </script>

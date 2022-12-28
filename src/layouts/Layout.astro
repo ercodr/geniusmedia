@@ -10,7 +10,7 @@ import Footer from '../components/Footer.astro';
 ---
 
 <!DOCTYPE html>
-<html lang="en" id="html">
+<html lang="en" id="html" class="overflow-x-hidden">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -20,7 +20,7 @@ import Footer from '../components/Footer.astro';
 	</head>
 	<body class="bg-slate-100 scrollbar-thin scrollbar-thumb-blue-700 scrollbar-track-slate-900
 	dark:bg-slate-800 ">
-		<main class="container mx-auto">
+		<main class="">
 			<slot />
 		</main>
 		<Footer />
@@ -40,4 +40,34 @@ import Footer from '../components/Footer.astro';
 		user-select: none;
 		-webkit-user-select: none;
 	}
+
+	.hide {
+		opacity: 0;
+		transform: translateX(-100%);
+		transition: all .5s ease-in-out;
+	}
+	
+	.show {
+		transform: translateX(0);
+		opacity: 1;
+	}
+
 </style>
+
+<script defer is:inline>
+	window.addEventListener('scroll', () => {
+		var hide = document.querySelectorAll('.hide')
+
+		for(var i=0; i < hide.length; i++){
+			var wH = window.innerHeight;
+			var hideTop = hide[i].getBoundingClientRect().top;
+			var hidePoint = 10;
+			
+			if (hideTop < wH - hidePoint ){
+				hide[i].classList.add('show')
+			} else {
+				hide[i].classList.remove('show')
+			}
+		}
+	})
+</script>

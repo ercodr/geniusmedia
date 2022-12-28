@@ -3,11 +3,11 @@ const navlinks = ['Home', 'About', 'Projects', 'Contact']
 ---
 
 <nav class="md:hidden bg-blue-800 text-slate-100 sticky top-0 z-20 inset-x-0">
-    <ul class="flex gap-6 text-sm px-4 py-2 justify-center">
+    <ul class="flex gap-4 text-sm justify-center px-4">
         {
             navlinks.map(link => {
                 return (
-                    <li>
+                    <li class={`${link.toLowerCase()} px-2 py-1`}>
                         <a href={`#${link}`}>{link}</a>
                     </li>
                 )
@@ -15,3 +15,54 @@ const navlinks = ['Home', 'About', 'Projects', 'Contact']
         }
     </ul>
 </nav>
+
+<script defer is:inline>
+	const home = document.querySelector('.home')
+	const about = document.querySelector('.about')
+	const projects = document.querySelector('.projects')
+	const contact = document.querySelector('.contact')
+	
+	home.classList.add('bg-slate-900')
+	
+	window.addEventListener('scroll', () => {
+		var hide = document.querySelectorAll('.hide')
+
+		for(var i=0; i < hide.length; i++){
+			var wH = window.innerHeight;
+			var hideTop = hide[i].getBoundingClientRect().top;
+			var hidePoint = 150;
+			
+			if(window.scrollY === 0) {
+				home.classList.add('bg-slate-900')
+				about.classList.remove('bg-slate-900')
+				projects.classList.remove('bg-slate-900')
+				contact.classList.remove('bg-slate-900')
+			} 
+			
+			if (hideTop < wH - hidePoint){
+				hide[i].classList.add('show')
+				section = hide[i].id
+				if(section==="About"){
+					home.classList.remove('bg-slate-900')
+					about.classList.add('bg-slate-900')
+					projects.classList.remove('bg-slate-900')
+					contact.classList.remove('bg-slate-900')
+				}
+				if(section==="Projects"){
+					home.classList.remove('bg-slate-900')
+					about.classList.remove('bg-slate-900')
+					projects.classList.add('bg-slate-900')
+					contact.classList.remove('bg-slate-900')
+				}
+				if(section==="Contact"){
+					home.classList.remove('bg-slate-900')
+					about.classList.remove('bg-slate-900')
+					projects.classList.remove('bg-slate-900')
+					contact.classList.add('bg-slate-900')
+				}
+			} else {
+				hide[i].classList.remove('show')
+			}
+		}
+	})
+</script>
