@@ -63,11 +63,7 @@ import Footer from '../components/Footer.astro';
 			var hideTop = hide[i].getBoundingClientRect().top;
 			var hidePoint = 10;
 			
-			if (hideTop < wH - hidePoint ){
-				hide[i].classList.add('show')
-			} else {
-				hide[i].classList.remove('show')
-			}
+			(hideTop < wH - hidePoint ) && hide[i].classList.add('show')
 		}
 	})
 </script>
